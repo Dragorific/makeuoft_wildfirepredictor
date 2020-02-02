@@ -8,11 +8,24 @@ services:
     expose:
       - 8080
     volumes:
-      - './frontend:/frontend'
+      - ./frontend:/frontend
     networks:
       - vlan
     ports:
       - 8080:8080
+
+  backend:
+    image: backend
+    container_name: wildfire_backend
+    build: ./backend
+    expose:
+      - 6060
+    volumes:
+      - ./vendor:/go/src/github.com/user/services/service-api-second/vendor
+    networks:
+      - vlan
+    ports:
+      - 6060:6060
 
 networks:
   vlan:
