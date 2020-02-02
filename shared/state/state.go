@@ -10,7 +10,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/mcmaster-circ/gcdcs/config"
+	"github.com/dragorific/makeuoft_wildfirepredictor/config"
 	"github.com/olivere/elastic/v7"
 	"github.com/streadway/amqp"
 
