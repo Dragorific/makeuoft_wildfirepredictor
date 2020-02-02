@@ -1,0 +1,40 @@
+[common]
+
+init_delay = "45s"
+
+amqp_host = "rabbitmq"
+amqp_port = 5672
+amqp_user = "circ"
+amqp_pass = "circmgmt"
+
+elasticsearch_host = "elasticsearch"
+elasticsearch_port = 9200
+
+logging_level = "debug"
+
+sendgrid_token  = "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"
+sendgrid_email  = "noreply@circlab.ca"
+sendgrid_name   = "CIRC Dashboard"
+sendgrid_domain = "dashboard.circlab.ca"
+
+user_registration   = true
+user_activated      = false
+
+
+[api]
+
+http_port = 6060
+
+secret_length       = 512
+auth_expiry         = "168h"    # 7 days
+auth_renew_age      = "24h"     # 1 day
+middleware_disable  = false
+
+asset_path = "assets/"
+
+https_enabled = false
+
+
+[webhook]
+
+http_port = 6061

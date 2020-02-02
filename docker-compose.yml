@@ -15,17 +15,140 @@ services:
       - 8080:8080
 
   backend:
-    image: backend
-    container_name: wildfire_backend
-    build: ./backend
+    build:
+      context: .
+      args:
+        block: backend
+    image: dragorific/backend
+    container_name: backend
+    depends_on:
+      - rabbitmq
+      - elasticsearch
     expose:
       - 6060
-    volumes:
-      - ./vendor:/go/src/github.com/user/services/service-api-second/vendor
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "5"
     networks:
       - vlan
     ports:
       - 6060:6060
+    restart: unless-stopped
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ./config.toml:/config.toml
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.4.1
+    container_name: elasticsearch
+    environment:
+      ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+      discovery.type: "single-node"
+    expose:
+      - 9200
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "5"
+    networks:
+      - vlan
+    ports:
+      - 9200:9200
+    restart: unless-stopped
+    security_opt:
+      - apparmor:unconfined
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+  
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.4.1
+    container_name: kibana
+    depends_on:
+      - elasticsearch
+    environment:
+      ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+      LOGGING_QUIET: "true"
+    expose:
+      - 5601
+    logging:
+      driver: "json-file" 
+      options:
+        max-size: "1m"
+        max-file: "5"
+    networks:
+      - vlan
+    ports:
+      - 5601:5601
+    restart: unless-stopped
+    security_opt:
+      - apparmor:unconfined
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+  rabbitmq:
+    image: rabbitmq:3.7.20-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: "circ"
+      RABBITMQ_DEFAULT_PASS: "circmgmt"
+    expose:
+      - 5672
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "5"
+    networks:
+      - vlan
+    ports:
+      - 5672:5672
+      - 15672:15672
+    restart: unless-stopped
+    security_opt:
+      - apparmor:unconfined
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+  caddy:
+    image: abiosoft/caddy:1.0.3-no-stats
+    container_name: caddy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "5"
+    networks:
+      - vlan
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    security_opt:
+      - apparmor:unconfined
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - './frontend:/web'
 
 networks:
   vlan:
+
+volumes:
+  caddy:
+  elasticsearch:

@@ -1,11 +1,8 @@
-# base image
 FROM golang:1.7-alpine
 
-# adds to the environment path (probably)
 ADD . /backend
 
-# set working directory
 WORKDIR /backend
+ENV GOPATH=/backend/src/vendor
 
-# start web
-CMD ["go", "run", "main.go"]
+CMD ["go","run","main.go"]
