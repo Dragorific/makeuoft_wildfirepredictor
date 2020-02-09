@@ -34,6 +34,14 @@
   color: #42b983;
 }
 
+
+.project-title{
+  padding:20px;
+}
+.project-content{
+  background-color:#74D5DD;
+  padding:15px;
+}
 .intro-desc{
   min-height:400px;
   background-color:#2F66A9;
@@ -42,15 +50,17 @@
 }
 .intro-img{
   min-height:400px;
-  background-color:rgb(153, 153, 153);
 }
 .info{
   min-height:600px;
   background-color:#398AD7;
   border:1px solid;
 }
-.home{
-  background-color:#74D5DD;
-  padding:15px;
+
+p{
+  color:black ;
+}
+h1{
+  text-decoration: underline;
 }
 </style>
