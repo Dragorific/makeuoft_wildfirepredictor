@@ -1,10 +1,13 @@
+
+
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--div id="nav">
+      <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
       <router-link to="/helloworld">DontClickMe</router-link>
-    </div>
+    </div-->
     <router-view/>
   </div>
 </template>
@@ -29,5 +32,25 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.intro-desc{
+  min-height:400px;
+  background-color:#2F66A9;
+  border: 1px solid;
+  box-shadow: 5px 10px black;
+}
+.intro-img{
+  min-height:400px;
+  background-color:rgb(153, 153, 153);
+}
+.info{
+  min-height:600px;
+  background-color:#398AD7;
+  border:1px solid;
+}
+.home{
+  background-color:#74D5DD;
+  padding:15px;
 }
 </style>
