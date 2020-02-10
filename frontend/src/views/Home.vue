@@ -1,20 +1,23 @@
 <template>
   <div class="home">
     <!--img alt="Vue logo" src="../assets/logo.png"-->
-    <div class="project-title">
-      <h1>Wildfire Predictor Model 2.0</h1>
+    <div class="front-page">
+      <div class="project-title">
+        <p>Wildfire Predictor Model 2.0</p>
+      </div>
     </div>
     <br/>
     <div class="project-content">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <div class="intro-img"><p>image of something?</p></div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="intro-desc"><p>description of shit</p></div>
+      <div class="intro">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="intro-img"><p>image of something?</p></div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="intro-desc"><p>description of shit</p></div>
+          </div>
         </div>
       </div>
-      <br/>
       <div class="row">
         <div class="col-12">
           <div class="info"><p>idk what goes here</p></div>

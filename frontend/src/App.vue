@@ -3,6 +3,7 @@
 <template>
   <div id="app">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
     <!--div id="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
@@ -35,12 +36,31 @@
 }
 
 
+.front-page{
+  height:100vh;
+}
 .project-title{
-  padding:20px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  font-family: 'Odibee Sans', cursive;
+  font-size:70px;
+  color: #2F66A9;
 }
 .project-content{
   background-color:#74D5DD;
   padding:15px;
+}
+.intro{
+  height:100vh;
+  width:100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.row{
+  width:100%;
 }
 .intro-desc{
   min-height:400px;
@@ -59,8 +79,5 @@
 
 p{
   color:black ;
-}
-h1{
-  text-decoration: underline;
 }
 </style>
