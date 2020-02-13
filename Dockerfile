@@ -1,27 +1,11 @@
-# Alpine linux with timezone and CA data
-FROM golang:alpine as goalpine
+FROM golang:latest AS builder
 
-RUN adduser -D -g '' gopher
-
-# certificates + timezone data
-RUN apk update
-RUN apk --no-cache add ca-certificates tzdata git
-
-
-# build image 
-FROM goalpine as build
+RUN mkdir /app
+ADD . /app
+WORKDIR /app
 ARG block
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/entrypoint ${block}/main.go
 
-COPY . /wfp
-WORKDIR /wfp
-RUN GIT_COMMIT=$(git rev-parse --short HEAD) && \
-    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -mod=vendor -installsuffix cgo -ldflags="-w -s -X main.versionHash=$GIT_COMMIT" -o /wfp/entrypoint ${block}/main.go
-
-
-# final image
-FROM alpine
-
-COPY --from=build /wfp /
-USER gopher
-
+FROM alpine:latest AS production
+COPY --from=builder /app /
 ENTRYPOINT ["/entrypoint"]
