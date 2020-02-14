@@ -1,12 +1,15 @@
 <template>
   <div class="home">
-    <!--img alt="Vue logo" src="../assets/logo.png"-->
+    <navbar/>
     <div class="front-page">
-      <div class="project-title">
-        <p>Wildfire Predictor Model 2.0</p>
+      <div class="paralax">
+        <div class = "overlay">
+        </div>
+        <div class="project-title">
+          <h1>Wildfire Predictor Model 2.0</h1>
+        </div>
       </div>
     </div>
-    <br/>
     <div class="project-content">
       <div class="intro">
         <div class="container-fluid">
@@ -26,20 +29,20 @@
         </div>
       </div>
     </div>
-    <!--HelloWorld testingVariable="I see, so this is how it gets passed on"/-->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-/*
-import HelloWorld from '@/components/HelloWorld.vue'
+import navbar from '@/components/navbar.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    navbar
   }
 }
-*/
 </script>
+
+<style scoped>
+  @import '../assets/css/HomePage.css'
+</style>
