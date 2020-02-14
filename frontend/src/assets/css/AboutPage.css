@@ -1,0 +1,11 @@
+.group-member-container{
+    height:100%;
+    width:100%;
+}
+
+.group-member{
+    height:400px;
+    width:100%;
+    margin:10px;
+    background-color:black;
+}
