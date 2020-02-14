@@ -1,28 +1,34 @@
 <template>
   <div class="about">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <div class="group-member-container">
-            <div class="group-member">FAIQ</div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="group-member-container">
-            <div class="group-member">UMAR</div>
-          </div>
+    <div class="columns">
+      <div class="column is-half">
+        <div class="group-member-container">
+          <div class="member-title"><p>Faiq Ahmed</p></div>
+          <div class="group-member-image-container"><img src="" alt="FAIQ"/></div>
+          <div class="group-member-desc-container"><p>I'm faiq and I did nothing in this project</p></div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <div class="group-member-container">
-            <div class="group-member">SKYLAR</div>
-          </div>
+      <div class="column is-half">
+        <div class="group-member-container">
+          <div class="member-title"><p>Umar Khan</p></div>
+          <div class="group-member-image-container"><img src="" alt="UMAR"/></div>
+          <div class="group-member-desc-container"><p>I'm umar and I did nothing in this project</p></div>
         </div>
-        <div class="col-12 col-md-6">
-          <div class="group-member-container">
-            <div class="group-member">VEERASH</div>
-          </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-half">
+        <div class="group-member-container">
+          <div class="member-title"><p>Skylar Liang</p></div>
+          <div class="group-member-image-container"><img src="" alt="SKYLAR"/></div>
+          <div class="group-member-desc-container"><p>I'm skylar and I did nothing in this project</p></div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="group-member-container">
+          <div class="member-title"><p>Veerash Palanichamy</p></div>
+          <div class="group-member-image-container"><img src="" alt="VEERASH"/></div>
+          <div class="group-member-desc-container"><p>I'm veerash and I did nothing in this project</p></div>
         </div>
       </div>
     </div>
