@@ -10,17 +10,17 @@
     <div class="project-content">
       <div class="intro">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-12 col-md-6">
+          <div class="columns">
+            <div class="column">
               <div class="intro-img"><p>image of something?</p></div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="column">
               <div class="intro-desc"><p>description of shit</p></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="columns">
         <div class="col-12">
           <div class="info"><p>idk what goes here</p></div>
         </div>
