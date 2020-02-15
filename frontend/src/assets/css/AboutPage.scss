@@ -4,33 +4,40 @@
 
 .members-title{
     font-size:75px;
-    margin:25px;
+    padding-top:100px;
+    padding-bottom:100px;
     font-family: 'Odibee Sans', cursive;
 }
 
 .group-member-container{
-    height:400px;
+    height:600px;
     background-color:#D2E459;
     box-shadow: 5px 10px #597C2B;
 }
 
 .member-title{
+    height:10%;
+    padding-top:2.5%;
     font-size:20px;
     background-color:#91B247;
+}
 
-    p{
-        color:white;
-        font-size:30px;
-        font-family: 'Odibee Sans', cursive;
-    }
+.member-title p{
+    color:white;
+    font-size:30px;
+    font-family: 'Odibee Sans', cursive;
 }
 
 .group-member-image-container{
-    height:35%;
+    height:50%;
+}
+
+.member-img-display{
+    margin-top:30px;
+    border-radius:1000px;
 }
 
 .group-member-desc-container{
-    height:50%;
     padding:10px;
     text-align:left;
     color:white;
