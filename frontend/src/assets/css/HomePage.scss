@@ -1,6 +1,4 @@
-.front-page{
-    height:110vh;
-}
+@import url('http://fonts.googleapis.com/css?family=Open+Sans');
 .project-title{
     position:absolute;
     top:55%;
@@ -10,35 +8,11 @@
     font-size: 10vh;
     color:white;
 }
-.project-content{
-    background-color:#74D5DD;
-    padding:15px;
-}
-.intro{
-    height:100vh;
-    width:100%;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.intro-desc{
-    min-height:400px;
-    background-color:#2F66A9;
-    border: 1px solid;
-    box-shadow: 5px 10px black;
-}
-.intro-img{
-    min-height:400px;
-}
-.info{
-    min-height:600px;
-    background-color:#398AD7;
-    border:1px solid;
-}
 
 p{
     color:black;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .paralax{
@@ -48,4 +22,25 @@ p{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+
+.carousel h1{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 52px;
+}
+
+.carousel hr{
+    background-color: red;
+    width: 70%;
+    height: 2px;
+    border-color: red;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carouselText{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
