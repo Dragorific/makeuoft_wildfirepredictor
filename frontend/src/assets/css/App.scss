@@ -13,12 +13,27 @@
     display:inline-block;
 }
 
-#nav a {
-    font-weight: bold;
-    color: #2c3e50;
-    padding:10px;
-}
-
-#nav a.router-link-exact-active {
-    color: #42b983;
-}
+a{
+    color: white !important;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: 1;
+    font-style: normal;
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 17px;
+  }
+  @media only screen 
+  and (min-width : 1600px) {
+    a{
+    font-size: 20px;
+  }
+  }
+  a.router-link-exact-active{
+      color: #D2E459 !important;
+  }
+  li{
+    list-style-type: disc !important;
+  }
+  ul{
+    margin-left: 40px !important;
+  }
