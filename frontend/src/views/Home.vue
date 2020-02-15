@@ -27,7 +27,11 @@
           </b-carousel-item>           
         </b-carousel>
       </div>
-      <graph/>
+      <div class="graphsParalax">
+        <div class="graph">
+          <graph/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -55,5 +59,5 @@ export default {
 </script>
 
 <style scoped>
-  @import '../assets/css/HomePage.scss'
+  @import '../assets/css/HomePage.scss';
 </style>

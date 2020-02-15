@@ -32,10 +32,10 @@ p{
 }
 
 .carousel hr{
-    background-color: red;
+    background-color: green;
     width: 70%;
     height: 2px;
-    border-color: red;
+    border-color: green;
     margin-left: auto;
     margin-right: auto;
 }
@@ -44,4 +44,23 @@ p{
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.graph{
+    background-color: white;
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    margin-top: 30px;
+}
+
+.graphsParalax{
+    background-image: url("../images/Home.jpeg");
+    height: 110vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
