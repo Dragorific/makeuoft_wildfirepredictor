@@ -96,32 +96,6 @@ services:
         soft: 65535
         hard: 65535
 
-  rabbitmq:
-    image: rabbitmq:3.7.20-management-alpine
-    container_name: rabbitmq
-    environment:
-      RABBITMQ_DEFAULT_USER: "circ"
-      RABBITMQ_DEFAULT_PASS: "circmgmt"
-    expose:
-      - 5672
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "1m"
-        max-file: "5"
-    networks:
-      - vlan
-    ports:
-      - 5672:5672
-      - 15672:15672
-    restart: unless-stopped
-    security_opt:
-      - apparmor:unconfined
-    ulimits:
-      nofile:
-        soft: 65535
-        hard: 65535
-
   caddy:
     image: abiosoft/caddy:1.0.3-no-stats
     container_name: caddy
