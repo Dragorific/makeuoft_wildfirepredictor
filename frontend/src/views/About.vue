@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <navbar/>
     <div class="columns">
       <div class="column is-half">
         <div class="group-member-container">
@@ -34,3 +35,13 @@
     </div>
   </div>
 </template>
+
+<script>
+import navbar from '@/components/navbar.vue'
+
+export default {
+  components: {
+    navbar
+  }
+}
+</script>

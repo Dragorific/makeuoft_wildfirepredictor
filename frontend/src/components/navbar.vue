@@ -15,7 +15,7 @@
                         <router-link to="/">Home</router-link>
                     </b-navbar-item>
                     <b-navbar-item style="background-color: #D2E459;" href="/">
-                        <router-link to="/">About</router-link>
+                        <router-link to="../about">About</router-link>
                     </b-navbar-item>
                 </template>
             </b-navbar>
