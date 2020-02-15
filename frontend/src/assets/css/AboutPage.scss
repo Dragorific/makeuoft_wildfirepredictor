@@ -5,13 +5,17 @@
 .group-img{
     width:100%;
     height:500px;
-    background-color:black;
+    background-color:grey;
+    box-shadow: -5px 10px black;
 }
 
 .group-desc{
     width:100%;
     height:500px;
-    background-color:black;
+    padding:10px;
+    text-align:left;
+    background-color:grey;
+    box-shadow: 5px 10px black;
 }
 
 .about{
@@ -19,7 +23,6 @@
 }
 
 .members-title{
-    padding-top:100px;
     padding-bottom:100px;
 }
 
