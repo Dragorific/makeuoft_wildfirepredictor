@@ -43,5 +43,5 @@ export default {
 </script>
 
 <style scoped>
-  @import '../assets/css/HomePage.css'
+  @import '../assets/css/HomePage.scss'
 </style>

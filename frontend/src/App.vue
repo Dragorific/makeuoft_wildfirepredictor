@@ -12,7 +12,6 @@
 </template>
 
 <style>
-    @import './assets/css/AboutPage.css';
-    @import './assets/css/App.css';
+    @import './assets/css/App.scss';
 </style>
 

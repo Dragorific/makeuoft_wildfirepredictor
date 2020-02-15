@@ -1,0 +1,40 @@
+.about{
+    margin:20px;
+}
+
+.members-title{
+    font-size:75px;
+    margin:25px;
+    font-family: 'Odibee Sans', cursive;
+}
+
+.group-member-container{
+    height:400px;
+    background-color:#D2E459;
+    box-shadow: 5px 10px #597C2B;
+}
+
+.member-title{
+    font-size:20px;
+    background-color:#91B247;
+
+    p{
+        color:white;
+        font-size:30px;
+        font-family: 'Odibee Sans', cursive;
+    }
+}
+
+.group-member-image-container{
+    height:35%;
+}
+
+.group-member-desc-container{
+    height:50%;
+    padding:10px;
+    text-align:left;
+    color:white;
+    background-color:#D2E459;
+    font-size:14px;
+    font-family: 'Open Sans', sans-serif;
+}

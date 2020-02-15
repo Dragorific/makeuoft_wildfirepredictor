@@ -1,6 +1,9 @@
 <template>
   <div class="about">
     <navbar/>
+    <div class="members-title">
+      <p>Members</p>
+    </div>
     <div class="columns">
       <div class="column is-half">
         <div class="group-member-container">
@@ -45,3 +48,8 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+  @import '../assets/css/AboutPage.scss';
+</style>

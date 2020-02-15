@@ -1,0 +1,51 @@
+.front-page{
+    height:110vh;
+}
+.project-title{
+    position:absolute;
+    top:55%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-family: 'Odibee Sans', cursive;
+    font-size: 10vh;
+    color:white;
+}
+.project-content{
+    background-color:#74D5DD;
+    padding:15px;
+}
+.intro{
+    height:100vh;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-desc{
+    min-height:400px;
+    background-color:#2F66A9;
+    border: 1px solid;
+    box-shadow: 5px 10px black;
+}
+.intro-img{
+    min-height:400px;
+}
+.info{
+    min-height:600px;
+    background-color:#398AD7;
+    border:1px solid;
+}
+
+p{
+    color:black;
+}
+
+.paralax{
+    background-image: url("../images/Home.jpeg");
+    height: 110vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
