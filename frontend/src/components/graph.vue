@@ -7,9 +7,9 @@
         style="width: 80vw; height: 60vh; margin-left: auto; margin-right: auto;"
         >
         <GmapMarker 
-            v-on:click="updateCharts"
             :key="index"
             v-for="(m,index) in Markers"
+            v-on:click="Name=m[0];updateCharts"
             :position = getMarker(index)
             :clickable="true"
             :draggable="true"
@@ -63,6 +63,7 @@
         },
         data(){
             return{
+                Name: "usa",
                 Place: "nil",
                 Markers: [["Main", "70.712891","37.09024"]], 
                 tempDataCollection: null,
@@ -76,14 +77,14 @@
                 return {lat: parseFloat(this.Markers[i][1]), lng: parseFloat(this.Markers[i][2])}
             },
             updateCharts(){
-                fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-usa")
+                fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-"+this.Name)
                 .then(response => {
                     return response.json();
                 })
                 .then(json => {
-                    this.Temp = json.Temp
-                    this.Humidity = json.Humidity 
-                    this.Light = json.Light 
+                    this.Temp = json.temp
+                    this.Humidity = json.humidity 
+                    this.Light = json.light 
                     console.log(json.markers); // eslint-disable-line no-console
                 })
                 .catch(err => {
