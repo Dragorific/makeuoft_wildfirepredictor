@@ -1,0 +1,40 @@
+kibana.172.105.24.55.xip.io:80 {
+    header / {
+      -Server
+      Cache-Control "no-cache, no-store, must-revalidate"
+    }
+    proxy / http://kibana:5601 {
+      keepalive 32
+      transparent
+    }
+}
+
+web.172.105.24.55.xip.io:80/api {
+    header / {
+      -Server
+      Cache-Control "no-cache, no-store, must-revalidate"
+    }
+    proxy / http://backend:6060 {
+      keepalive 32
+      transparent
+    }
+}
+
+web.172.105.24.55.xip.io:80 {
+  root /frontend/dist
+  header / {
+    -Server
+    Cache-Control "no-cache, no-store, must-revalidate"
+  }
+}
+
+elastic.172.105.24.55.xip.io:80 {
+    header / {
+      -Server
+      Cache-Control "no-cache, no-store, must-revalidate"
+    }
+    proxy / http://elasticsearch:9200 {
+      keepalive 32
+      transparent
+    }
+}
