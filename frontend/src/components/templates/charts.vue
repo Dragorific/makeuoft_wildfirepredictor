@@ -16,7 +16,9 @@
     },
     data () {
       return {
-        datacollectionOne: null
+        tempDataCollection: null,
+        humDataCollection: null,
+        lightDataCollection: null
       }
     },
     mounted () {
@@ -31,18 +33,18 @@
               label: 'Temperature',
               backgroundColor: '#D2E459',
               //data: [this.getTempData(), this.getTempData()]
-              data: [this.getRandomInt(), this.getRandomInt()]
+              data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
             }
           ]
         }, 
-        this.HumDataCollection = {
+        this.humDataCollection = {
           labels: [this.getRandomInt(), this.getRandomInt()],
           datasets: [
             {
               label: 'Humidity',
               backgroundColor: '#D2E459',
               //data: [this.getHumData(), this.getHumData()]
-              data: [this.getRandomInt(), this.getRandomInt()]
+              data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
             }
           ]
         }, 
@@ -53,7 +55,7 @@
               label: 'Light Strength',
               backgroundColor: '#D2E459',
               //data: [this.getLightData(), this.getLightData]
-              data: [this.getRandomInt(), this.getRandomInt()]
+              data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
             }
           ]
         }
