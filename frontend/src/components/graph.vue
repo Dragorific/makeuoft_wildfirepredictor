@@ -15,8 +15,9 @@
             :draggable="true"
         />
         </GmapMap>
-        <h1>{{Markers}}</h1>
-
+        <!--h1>{{Markers}}</h1-->
+        <br/>
+        <br/>
         <div class="small">
             <div class="columns">
                 <div class="column">
@@ -38,7 +39,9 @@
 </template>
 
 <script>
+
     import LineChart from './LineChart.js'
+
     export default {
         components: {
             LineChart
@@ -55,6 +58,7 @@
             .catch(err => {
                 console.log(err); // eslint-disable-line no-console
             });
+            setInterval(this.updateCharts, 2000)
             this.fillData()
         },
         data(){
@@ -66,62 +70,74 @@
                 lightDataCollection: null
             }
         },
+        
         methods: {
             getMarker(i){
                 return {lat: parseFloat(this.Markers[i][1]), lng: parseFloat(this.Markers[i][2])}
             },
             updateCharts(){
-                fetch(process.env.VUE_APP_ENDPOINT + "/api/get-markers")
-                .then(response => {
-                    return response.json();
-                })
-                .then(json => {
-                    this.Markers = json.markers
-                    console.log(json.markers); // eslint-disable-line no-console
-                })
-                .catch(err => {
-                    console.log(err); // eslint-disable-line no-console
-                });
+                // fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-{name}")
+                // .then(response => {
+                //     return response.json();
+                // })
+                // .then(json => {
+                //     this.Temp = json.Temp
+                //     this.Humidity = json.Humidity 
+                //     this.Light = json.Light 
+                //     console.log(json.markers); // eslint-disable-line no-console
+                // })
+                // .catch(err => {
+                //     console.log(err); // eslint-disable-line no-console
+                // });
+
+                this.fillData()
             },
 
             fillData () {
                 this.tempDataCollection = {
-                labels: [this.getRandomInt(), this.getRandomInt()],
-                datasets: [
-                    {
-                    label: 'Temperature',
-                    backgroundColor: 'red',
-                    //data: [this.getTempData(), this.getTempData()]
-                    data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+                    labels: [0, 100],
+                    datasets: [
+                        {
+                        label: 'Temperature',
+                        backgroundColor: 'red',
+                        data: this.Temp, 
+                        
+                        }
+                    ], 
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                stepSize: 50,
+                                maxTicksLimit: 3
+                            }
+                        }]
                     }
-                ]
                 }, 
+                
                 this.humDataCollection = {
-                labels: [this.getRandomInt(), this.getRandomInt()],
-                datasets: [
-                    {
-                    label: 'Humidity',
-                    backgroundColor: 'green',
-                    //data: [this.getHumData(), this.getHumData()]
-                    data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
-                    }
-                ]
+                    labels: [0, 100],
+                    datasets: [
+                        {
+                        label: 'Humidity',
+                        backgroundColor: 'green',
+                        data: this.Humidity
+                        }
+                    ]
                 }, 
                 this.lightDataCollection = {
-                labels: [this.getRandomInt(), this.getRandomInt()],
-                datasets: [
-                    {
-                    label: 'Light Strength',
-                    backgroundColor: 'blue',
-                    //data: [this.getLightData(), this.getLightData]
-                    data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
-                    }
-                ]
+                    labels: [0, 30],
+                    datasets: [
+                        {
+                        label: 'Light Strength',
+                        backgroundColor: 'blue',
+                        data: this.Light
+                        }
+                    ]
                 }
-                }, 
-                getRandomInt () {
-                    return Math.floor(Math.random() * (50 - 5 + 1)) + 5
-                }
+            }, 
+            getRandomInt () {
+                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+            }
         }
     }
 </script>

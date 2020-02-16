@@ -5,8 +5,9 @@
                 <template slot="brand">
                     <b-navbar-item tag="router-link" :to="{ path: '/' }">
                         <img
-                            src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
+                            src="../assets/images/WFP-Logo.png"
                             alt="Lightweight UI components for Vue.js based on Bulma"
+                            class="logo-size"
                         >
                     </b-navbar-item>
                 </template>
@@ -22,6 +23,10 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+    @import '../assets/css/nav-bar.scss';
+</style>
 
 <!--<template>
     <div class="navcontainer">
