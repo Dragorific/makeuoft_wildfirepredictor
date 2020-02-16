@@ -1,5 +1,5 @@
 # base image
-FROM node:lastest
+FROM node:12.2.0
 
 # set working directory
 WORKDIR /frontend
