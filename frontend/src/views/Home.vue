@@ -32,6 +32,11 @@
           <graph/>
         </div>
       </div>
+
+      <div>
+        <charts/>
+      </div>
+
     </div>
   </div>
 </template>
@@ -39,11 +44,13 @@
 <script>
 import navbar from '@/components/navbar.vue'
 import graph from '@/components/graph.vue'
+import charts from '@/components/templates/charts.vue'
 
 export default {
   components: {
     navbar,
-    graph
+    graph, 
+    charts
   },
   data(){
         return {
