@@ -6,7 +6,6 @@ from elasticsearch import Elasticsearch
 time.sleep(30)
 
 # This variable will house all the arrays of markers and continuously update the ES database
-marker = []
 
 #es = None
 
@@ -16,7 +15,7 @@ solace_port = 20262
 solace_user = "solace-cloud-client"
 solace_passwd = "vv59buiu782ds6bt868pp144ns"
 solace_clientid = ""                                # Leave clientID empty for default key, errors otherwise
-topic_sensor_info = "start_data"                    # Markers
+topic_sensor_info = "sensor_data"                    # Markers
 
 qos = 1                                             #qos will always be a constant of 1
 
@@ -28,10 +27,9 @@ def on_connect(client, userdata, flags, rc):  # The callback for when the client
 
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
-    marker.append(str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(","))      #This will break up the string ("CAN,lat,long") into [name, latitude, longitude], and add it into marker
-    #marker2 = str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(",")
-    es.update(index="markers", doc_type='_doc', id="markers", body={"doc": {"markers":marker}})
-    print("Message received-> " + msg.topic + " " + str(msg.payload) + " " + str(marker[0]))  # Print a received msg to cehck
+    sensor = (str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(","))      #This will break up the string ("CAN,lat,long") into [name, latitude, longitude], and add it into marker
+    es.index(index=sensor[0], doc_type='_doc', id=sensor[0], body={"doc": {"data": {"sensor":sensor[1:]}, "timestamp": }})
+    print("Message received-> " + msg.topic + " " + str(msg.payload) + " " + str(sensor[0]))  # Print a received msg to cehck
 
 
 
@@ -39,14 +37,7 @@ def on_message(client, userdata, msg):  # The callback for when a PUBLISH messag
 #if __name__ == "__main__":
     ## Subscribe to the Solace Broker and receive sensor information
 es = Elasticsearch(['http://elasticsearch:9200'])
-es.indices.create(index="markers", ignore=400)
-es.indices.create(index="Test", ignore=400)
 print("Index has been created, started listening")
-doc = {
-    'markers': marker
-}
-
-es.index(index="markers", id="markers", body=doc)
 
 # Create client for markers
 client = mqtt.Client(solace_clientid)  # Create instance of marker client
@@ -61,6 +52,3 @@ client.on_message = on_message # Define callback function for receipt of a messa
 client.connect(solace_url, solace_port, 60) # Connect to Solace Event Broker
 # client.loop_start()
 client.loop_forever()  # Start networking daemon
-    
-
-
