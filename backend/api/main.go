@@ -80,18 +80,31 @@ func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 		w.Write([]byte(docJSON))
 		return
 	})
-	/*api.HandleFunc("/getData-{name}", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != "GET" {
-			s.Log.Error("/get-markers did not receive a get request")
-			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte("bad request"))
+	/*
+		api.HandleFunc("/getData-{name}", func(w http.ResponseWriter, r *http.Request) {
+			if r.Method != "GET" {
+				s.Log.Error("/get-markers did not receive a get request")
+				w.WriteHeader(http.StatusBadRequest)
+				w.Write([]byte("bad request"))
+				return
+			}
+			name := mux.Vars(r)
+			markerName := name["name"]
+			client, ctx := s.Elastic, s.Ctx
+			result, err := client.Search().Index(markerName).SortBy(elastic.NewFieldSort("timestamp").Asc()).From(0).Size(30).Do(ctx)
+			if err != nil {
+				s.Log.Error("Unable to get data from getData index", err)
+				w.WriteHeader(http.StatusBadRequest)
+				w.Write([]byte("bad request"))
+				return
+			}
+			var arr[30]
+			for i, data:= range results.Hits.Hits{
+				arr[i]:=data.Source
+			}
+			dataList := `{"data":
+			w.WriteHeader(http.StatusOK)
+			w.Write([]byte())
 			return
-		}
-		name := mux.Vars(r)
-		markerName := name["name"]
-		client, ctx:= s.Elastic, s.Ctx
-		result, err := client.Search().Index(markerName).Do(ctx)
-		for(res)
-	})*/
-
+		})*/
 }

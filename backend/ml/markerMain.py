@@ -29,7 +29,9 @@ def on_connect(client, userdata, flags, rc):  # The callback for when the client
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
     marker.append(str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(","))      #This will break up the string ("CAN,lat,long") into [name, latitude, longitude], and add it into marker
-    es.update(index="markers", doc_type='_doc', id="markers", body={"doc": {"markers":marker}})
+    marker2 = str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(",")
+    es.indices.create(index=marker2[0], ignore=400)
+    es.update(index="markers", doc_type='_doc', id="markers", body={'doc': {'markers':marker}})
     print("Message received-> " + msg.topic + " " + str(msg.payload) + " " + str(marker[0]))  # Print a received msg to cehck
 
 
@@ -37,7 +39,6 @@ def on_message(client, userdata, msg):  # The callback for when a PUBLISH messag
 
 #if __name__ == "__main__":
     ## Subscribe to the Solace Broker and receive sensor information
-    # es.indices.create(index="markers", ignore=400)
 es = Elasticsearch(['http://elasticsearch:9200'])
 es.indices.create(index="markers", ignore=400)
 print("Index has been created, started listening")
@@ -46,7 +47,8 @@ doc = {
 }
 
 es.index(index="markers", id="markers", body=doc)
-# Create 2 clients, one for markers and one for sensor data
+
+# Create client for markers
 client = mqtt.Client(solace_clientid)  # Create instance of marker client
 
 
