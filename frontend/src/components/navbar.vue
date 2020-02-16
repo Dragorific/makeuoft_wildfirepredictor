@@ -10,11 +10,11 @@
                         >
                     </b-navbar-item>
                 </template>
-                <template slot="start">
-                    <b-navbar-item href="/">
+                <template slot="start" type="is-dark">
+                    <b-navbar-item href="/" type="is-dark">
                         <router-link to="/">Home</router-link>
                     </b-navbar-item>
-                    <b-navbar-item href="/">
+                    <b-navbar-item href="/" type="is-dark">
                         <router-link to="../about">About</router-link>
                     </b-navbar-item>
                 </template>

@@ -1,6 +1,9 @@
 <template>
   <div class="about">
     <navbar/>
+    <div class="paralax front-transition forest-trees">
+      <p>About Us</p>
+    </div>
     <div class="group-info-container">
       <div class="columns">
         <div class="column">
@@ -13,39 +16,128 @@
         </div>
       </div>
     </div>
+    <div class="paralax sub-transition forest-mountains"></div>
     <div class="members-title">
       <p>Members</p>
     </div>
     <div class="members-container">
+
       <div class="columns">
-        <div class="column is-half">
-          <div class="group-member-container">
-            <div class="member-title"><p>Faiq Ahmed</p></div>
-            <div class="group-member-image-container"><img class="member-img-display" src="../assets/images/Faiq.jpg" width="60%"/></div>
-            <div class="group-member-desc-container"><p>I'm faiq and I did nothing in this project</p></div>
+        <div class="column is-quarter">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-1by1">
+                <img src="../assets/images/Faiq.jpg" alt="Placeholder image" >
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <!--div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/images/Faiq.jpg" alt="Placeholder image">
+                  </figure>
+                </div-->
+                <div class="media-content">
+                  <p class="title is-4">Faiq Ahmed</p>
+                  <p class="subtitle is-6">@johnsmith</p>
+                </div>
+              </div>
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="column is-half">
-          <div class="group-member-container">
-            <div class="member-title"><p>Umar Khan</p></div>
-            <div class="group-member-image-container"><img class="member-img-display" src="../assets/images/Umar.jpg" width="60%"/></div>
-            <div class="group-member-desc-container"><p>I'm umar and I did nothing in this project</p></div>
+        <div class="column is-quarter">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-1by1">
+                <img src="../assets/images/Umar.jpg" alt="Placeholder image" >
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <!--div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/images/Umar.jpg" alt="Placeholder image">
+                  </figure>
+                </div-->
+                <div class="media-content">
+                  <p class="title is-4">Umar Khan</p>
+                  <p class="subtitle is-6">@johnsmith</p>
+                </div>
+              </div>
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="columns">
-        <div class="column is-half">
-          <div class="group-member-container">
-            <div class="member-title"><p>Skylar Liang</p></div>
-            <div class="group-member-image-container"><img class="member-img-display" src="../assets/images/Skylar.png" width="60%"/></div>
-            <div class="group-member-desc-container"><p>I'm skylar and I did nothing in this project</p></div>
+    
+        <div class="column is-quarter">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-1by1">
+                <img src="../assets/images/Skylar.png" alt="Placeholder image" >
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <!--div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/images/Skylar.png" alt="Placeholder image">
+                  </figure>
+                </div-->
+                <div class="media-content">
+                  <p class="title is-4">Skylar Liang</p>
+                  <p class="subtitle is-6">@johnsmith</p>
+                </div>
+              </div>
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="column is-half">
-          <div class="group-member-container">
-            <div class="member-title"><p>Veerash Palanichamy</p></div>
-            <div class="group-member-image-container"><img class="member-img-display" src="../assets/images/Veerash.jpg" width="60%"/></div>
-            <div class="group-member-desc-container"><p>I'm veerash and I did nothing in this project</p></div>
+        <div class="column is-quarter">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-1by1">
+                <img src="../assets/images/Veerash.jpg" alt="Placeholder image" >
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <!--div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="../assets/images/Veerash.jpg" alt="Placeholder image">
+                  </figure>
+                </div-->
+                <div class="media-content">
+                  <p class="title is-4">Veerash Palanichamy</p>
+                  <p class="subtitle is-6">@johnsmith</p>
+                </div>
+              </div>
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
           </div>
         </div>
       </div>
