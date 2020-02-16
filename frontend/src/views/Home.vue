@@ -27,16 +27,23 @@
           </b-carousel-item>           
         </b-carousel>
       </div>
+      <div class="graphsParalax">
+        <div class="graph">
+          <graph/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import navbar from '@/components/navbar.vue'
+import graph from '@/components/graph.vue'
 
 export default {
   components: {
-    navbar
+    navbar,
+    graph
   },
   data(){
         return {
@@ -52,5 +59,5 @@ export default {
 </script>
 
 <style scoped>
-  @import '../assets/css/HomePage.scss'
+  @import '../assets/css/HomePage.scss';
 </style>
