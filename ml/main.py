@@ -19,13 +19,13 @@ zero = [line[:-1] for line in data if line[-1]==0.0]
 print(len(one))
 print(len(zero))
 
-# df = pd.DataFrame(one)
+df = pd.DataFrame(zero)
 
-# df_corr = df.corr()
+df_corr = df.corr()
 
-# plt.figure(figsize=(10,10))
-# seaborn.heatmap(df_corr, cmap="Reds")
-# seaborn.set(font_scale=2,style='white')
+plt.figure(figsize=(10,10))
+seaborn.heatmap(df_corr, cmap="Reds")
+seaborn.set(font_scale=2,style='white')
 
-# plt.title('Heatmap correlation')
-# plt.show()
+plt.title('Heatmap correlation')
+plt.show()

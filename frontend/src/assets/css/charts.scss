@@ -1,6 +1,15 @@
+.small{
+    display:flex;
+    justify-content: center;
+    padding-bottom:200px;
+}
+
 .chartjs-render-monitor{
-    height:400px !important;
-    width:400px !important;
-    margin:0 auto;
-    font-size:30px;
+    height:300px !important;
+    width:300px !important;
+}
+
+.graph-display{
+    width:300px !important;
+    margin:0 !important;
 }
