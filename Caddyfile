@@ -9,7 +9,7 @@ kibana.127.0.0.1.xip.io:80 {
     }
 }
 
-api.127.0.0.1.xip.io:80 {
+web.127.0.0.1.xip.io:80/api {
     header / {
       -Server
       Cache-Control "no-cache, no-store, must-revalidate"
