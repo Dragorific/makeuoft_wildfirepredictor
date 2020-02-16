@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/dragorific/makeuoft_wildfirepredictor/libraries/apilib"
 	"github.com/dragorific/makeuoft_wildfirepredictor/libraries/elasticsearch"
 	"github.com/dragorific/makeuoft_wildfirepredictor/setup"
 	"github.com/gorilla/mux"
@@ -98,13 +99,13 @@ func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 			w.Write([]byte("bad request"))
 			return
 		}
-		var arr[30]
-		for i, data:= range results.Hits.Hits{
-			arr[i]:=data.Source
+		var arr [30][]byte
+		for i, data := range result.Hits.Hits {
+			arr[i] = data.Source
 		}
-		dataList := `{"data":
+		returnedData := apilib.ParseSensorData(arr)
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte())
+		w.Write([]byte(returnedData))
 		return
 	})
 
