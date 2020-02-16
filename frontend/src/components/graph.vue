@@ -14,7 +14,7 @@
             :draggable="true"
         />
         </GmapMap>
-        <h1>{{Markers}}</h1>
+        <h1 v-on:click="updateCharts">{{Markers}}</h1>
     </div>
 
 </template>

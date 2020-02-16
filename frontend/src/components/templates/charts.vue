@@ -1,9 +1,17 @@
 <template>
   <div class="small">
-    <line-chart :chart-data="tempDataCollection"></line-chart>
-    <line-chart :chart-data="humDataCollection"></line-chart>
-    <line-chart :chart-data="lightDataCollection"></line-chart>
-    <button @click="fillData()">Randomize</button>
+    <div class="columns">
+      <div class="column">
+        <line-chart class="graph-display" :chart-data="tempDataCollection"></line-chart>
+      </div>
+      <div class="column">
+        <line-chart class="graph-display" :chart-data="humDataCollection"></line-chart>
+      </div>
+      <div class="column">
+        <line-chart class="graph-display" :chart-data="lightDataCollection"></line-chart>
+      </div>
+    </div>
+    <!--button @click="fillData()">Randomize</button-->
   </div>
 </template>
 
@@ -22,6 +30,7 @@
       }
     },
     mounted () {
+      
       this.fillData()
     },
     methods: {
@@ -31,7 +40,7 @@
           datasets: [
             {
               label: 'Temperature',
-              backgroundColor: '#D2E459',
+              backgroundColor: 'red',
               //data: [this.getTempData(), this.getTempData()]
               data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
             }
@@ -42,7 +51,7 @@
           datasets: [
             {
               label: 'Humidity',
-              backgroundColor: '#D2E459',
+              backgroundColor: 'green',
               //data: [this.getHumData(), this.getHumData()]
               data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
             }
@@ -53,7 +62,7 @@
           datasets: [
             {
               label: 'Light Strength',
-              backgroundColor: '#D2E459',
+              backgroundColor: 'blue',
               //data: [this.getLightData(), this.getLightData]
               data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
             }
