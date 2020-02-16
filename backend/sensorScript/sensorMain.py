@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import time
+from datetime import datetime
 import json
 from elasticsearch import Elasticsearch
 
@@ -28,7 +29,9 @@ def on_connect(client, userdata, flags, rc):  # The callback for when the client
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
     sensor = (str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(","))      #This will break up the string ("CAN,lat,long") into [name, latitude, longitude], and add it into marker
-    es.index(index=sensor[0], doc_type='_doc', id=sensor[0], body={"doc": {"data": {"sensor":sensor[1:]}, "timestamp": }})
+    now = datetime.now()
+    time = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+    es.index(index=sensor[0], doc_type='_doc', body={"doc": {"sensor":sensor[1:],"timestamp": time}})
     print("Message received-> " + msg.topic + " " + str(msg.payload) + " " + str(sensor[0]))  # Print a received msg to cehck
 
 

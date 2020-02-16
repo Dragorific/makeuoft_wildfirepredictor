@@ -29,8 +29,9 @@ def on_connect(client, userdata, flags, rc):  # The callback for when the client
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
     marker.append(str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(","))      #This will break up the string ("CAN,lat,long") into [name, latitude, longitude], and add it into marker
-    #marker2 = str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(",")
-    es.update(index="markers", doc_type='_doc', id="markers", body={"doc": {"markers":marker}})
+    marker2 = str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(",")
+    es.indices.create(index=marker2[0], ignore=400)
+    es.update(index="markers", doc_type='_doc', id="markers", body={'doc': {'markers':marker}})
     print("Message received-> " + msg.topic + " " + str(msg.payload) + " " + str(marker[0]))  # Print a received msg to cehck
 
 
@@ -40,7 +41,6 @@ def on_message(client, userdata, msg):  # The callback for when a PUBLISH messag
     ## Subscribe to the Solace Broker and receive sensor information
 es = Elasticsearch(['http://elasticsearch:9200'])
 es.indices.create(index="markers", ignore=400)
-es.indices.create(index="Test", ignore=400)
 print("Index has been created, started listening")
 doc = {
     'markers': marker
