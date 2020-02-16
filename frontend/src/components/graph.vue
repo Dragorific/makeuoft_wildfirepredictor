@@ -9,27 +9,41 @@
         <GmapMarker
             :key="index"
             v-for="(m,index) in Markers"
-            :position = "m.position"
+            :position = getMarker(index)
             :clickable="true"
             :draggable="true"
-            @click="Place=m.name"
         />
         </GmapMap>
-        <h1>{{Place}}</h1>
+        <h1>{{Markers}}</h1>
     </div>
 
 </template>
 
 <script>
     export default {
+        mounted(){
+            fetch(process.env.VUE_APP_ENDPOINT + "/api/get-markers")
+            .then(response => {
+                return response.json();
+            })
+            .then(json => {
+                this.Markers = json.markers
+                console.log(json.markers); // eslint-disable-line no-console
+            })
+            .catch(err => {
+                console.log(err); // eslint-disable-line no-console
+            });
+        },
         data(){
             return{
                 Place: "nil",
-                Markers: [{
-                    name: "Main",
-                    position: {lat:55.585901, lng:-105.750596},
-                }]
+                Markers: [["Main", "70.712891","37.09024"]]
             }
-        }
+        },
+        methods: {
+            getMarker(i){
+                return {lat: parseFloat(this.Markers[i][1]), lng: parseFloat(this.Markers[i][2])}
+            }
+        },
     }
 </script>

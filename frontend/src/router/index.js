@@ -7,6 +7,7 @@ import 'buefy/dist/buefy.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import {GmapMarker} from 'vue2-google-maps/src/components/marker'
 
+
 Vue.component('GmapMarker', GmapMarker)
 Vue.use(VueRouter)
 Vue.use(Buefy)

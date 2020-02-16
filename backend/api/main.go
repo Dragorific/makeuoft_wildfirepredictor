@@ -1,12 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
+	"github.com/dragorific/makeuoft_wildfirepredictor/libraries/elasticsearch"
 	"github.com/dragorific/makeuoft_wildfirepredictor/setup"
 	"github.com/gorilla/mux"
+	"github.com/olivere/elastic"
 )
 
 func main() {
@@ -48,9 +49,63 @@ func main() {
 
 func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 
-	api.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
+	api.HandleFunc("/get-markers", func(w http.ResponseWriter, r *http.Request) {
+		s.Log.Info("new request on /get-markers")
+		if r.Method != "GET" {
+			s.Log.Error("/get-markers did not receive a get request")
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("bad request"))
+			return
+		}
+
+		if !elasticsearch.ExistsByID(s, "markers", "markers") {
+			client, ctx := s.Elastic, s.Ctx
+			data := `{"markers":[["US","37.0902","-95.7129"],["Canada","55.585901","-105.750596"]]}`
+			_, err := client.Index().Index("markers").Id("markers").BodyJson(data).Do(ctx)
+			if err != nil {
+				s.Log.Error("error indexing markers document to markers ", err)
+			}
+			w.WriteHeader(http.StatusOK)
+			w.Write([]byte(data))
+			return
+		}
+
+		docJSON, err := elasticsearch.GetDocumentByID(s, "markers", "markers")
+		if err != nil {
+			s.Log.Error("Unable to get data from markers index", err)
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("bad request"))
+			return
+		}
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "Success")
+		w.Write([]byte(docJSON))
+		return
 	})
+	api.HandleFunc("/getData-{name}", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != "GET" {
+			s.Log.Error("/get-markers did not receive a get request")
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("bad request"))
+			return
+		}
+		name := mux.Vars(r)
+		markerName := name["name"]
+		client, ctx := s.Elastic, s.Ctx
+		result, err := client.Search().Index(markerName).SortBy(elastic.NewFieldSort("timestamp").Asc()).From(0).Size(30).Do(ctx)
+		if err != nil {
+			s.Log.Error("Unable to get data from getData index", err)
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("bad request"))
+			return
+		}
+		var arr[30]
+		for i, data:= range results.Hits.Hits{
+			arr[i]:=data.Source
+		}
+		dataList := `{"data":
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte())
+		return
+	})
+
 }
