@@ -1,8 +1,8 @@
 <template>
   <div class="small">
-    <line-chart :chart-data="datacollectionOne"></line-chart>
-    <line-chart :chart-data="datacollectionTwo"></line-chart>
-    <line-chart :chart-data="datacollectionThree"></line-chart>
+    <line-chart :chart-data="tempDataCollection"></line-chart>
+    <line-chart :chart-data="humDataCollection"></line-chart>
+    <line-chart :chart-data="lightDataCollection"></line-chart>
     <button @click="fillData()">Randomize</button>
   </div>
 </template>
@@ -24,37 +24,52 @@
     },
     methods: {
       fillData () {
-        this.datacollectionOne = {
+        this.tempDataCollection = {
           labels: [this.getRandomInt(), this.getRandomInt()],
           datasets: [
             {
-              label: 'Data One',
-              backgroundColor: '#f87979',
+              label: 'Temperature',
+              backgroundColor: '#D2E459',
+              //data: [this.getTempData(), this.getTempData()]
               data: [this.getRandomInt(), this.getRandomInt()]
             }
           ]
         }, 
-        this.datacollectionTwo = {
+        this.HumDataCollection = {
           labels: [this.getRandomInt(), this.getRandomInt()],
           datasets: [
             {
-              label: 'Data One',
-              backgroundColor: '#f87979',
+              label: 'Humidity',
+              backgroundColor: '#D2E459',
+              //data: [this.getHumData(), this.getHumData()]
               data: [this.getRandomInt(), this.getRandomInt()]
             }
           ]
         }, 
-        this.datacollectionThree = {
+        this.lightDataCollection = {
           labels: [this.getRandomInt(), this.getRandomInt()],
           datasets: [
             {
-              label: 'Data One',
-              backgroundColor: '#f87979',
+              label: 'Light Strength',
+              backgroundColor: '#D2E459',
+              //data: [this.getLightData(), this.getLightData]
               data: [this.getRandomInt(), this.getRandomInt()]
             }
           ]
         }
       },
+      //make a function here that grabs the data from the requests
+      /*
+      getTempData(){
+        return
+      },
+      getHumData(){
+        return
+      },
+      getLightData(){
+        return
+      }
+      */
       getRandomInt () {
         return Math.floor(Math.random() * (50 - 5 + 1)) + 5
       }
