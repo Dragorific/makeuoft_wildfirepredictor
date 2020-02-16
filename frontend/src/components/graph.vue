@@ -76,7 +76,7 @@
                 return {lat: parseFloat(this.Markers[i][1]), lng: parseFloat(this.Markers[i][2])}
             },
             updateCharts(){
-                fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-can")
+                fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-usa")
                 .then(response => {
                     return response.json();
                 })

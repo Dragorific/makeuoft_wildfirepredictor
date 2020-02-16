@@ -3,4 +3,5 @@ ADD . /ml
 WORKDIR /ml
 RUN pip install elasticsearch
 RUN pip install paho-mqtt
+RUN pip install sklearn
 CMD ["python", "sensorMain.py"]
