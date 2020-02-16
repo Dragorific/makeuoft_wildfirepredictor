@@ -1,6 +1,8 @@
 <template>
   <div class="small">
-    <line-chart :chart-data="datacollection"></line-chart>
+    <line-chart :chart-data="datacollectionOne"></line-chart>
+    <line-chart :chart-data="datacollectionTwo"></line-chart>
+    <line-chart :chart-data="datacollectionThree"></line-chart>
     <button @click="fillData()">Randomize</button>
   </div>
 </template>
@@ -14,7 +16,7 @@
     },
     data () {
       return {
-        datacollection: null
+        datacollectionOne: null
       }
     },
     mounted () {
@@ -22,14 +24,30 @@
     },
     methods: {
       fillData () {
-        this.datacollection = {
+        this.datacollectionOne = {
           labels: [this.getRandomInt(), this.getRandomInt()],
           datasets: [
             {
               label: 'Data One',
               backgroundColor: '#f87979',
               data: [this.getRandomInt(), this.getRandomInt()]
-            }, {
+            }
+          ]
+        }, 
+        this.datacollectionTwo = {
+          labels: [this.getRandomInt(), this.getRandomInt()],
+          datasets: [
+            {
+              label: 'Data One',
+              backgroundColor: '#f87979',
+              data: [this.getRandomInt(), this.getRandomInt()]
+            }
+          ]
+        }, 
+        this.datacollectionThree = {
+          labels: [this.getRandomInt(), this.getRandomInt()],
+          datasets: [
+            {
               label: 'Data One',
               backgroundColor: '#f87979',
               data: [this.getRandomInt(), this.getRandomInt()]
@@ -44,9 +62,6 @@
   }
 </script>
 
-<style>
-  .small {
-    max-width: 600px;
-    margin:  150px auto;
-  }
+<style scoped>
+  @import '../../assets/css/charts.scss';
 </style>

@@ -27,10 +27,8 @@
           </b-carousel-item>           
         </b-carousel>
       </div>
-      <div class="graphsParalax">
-        <div class="graph">
-          <graph/>
-        </div>
+      <div class="graph">
+        <graph/>
       </div>
 
       <div>
