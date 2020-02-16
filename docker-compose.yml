@@ -22,7 +22,6 @@ services:
     image: dragorific/backend/api
     container_name: backend
     depends_on:
-      - rabbitmq
       - elasticsearch
     expose:
       - 6060

@@ -8,19 +8,28 @@
         >
         <GmapMarker
             :key="index"
-            v-for="(m, index) in markers"
-            :position="m.position"
+            v-for="(m,index) in Markers"
+            :position = "m.position"
             :clickable="true"
             :draggable="true"
-            @click="center=m.position"
+            @click="Place=m.name"
         />
         </GmapMap>
+        <h1>{{Place}}</h1>
     </div>
 
 </template>
 
 <script>
     export default {
-        
+        data(){
+            return{
+                Place: "nil",
+                Markers: [{
+                    name: "Main",
+                    position: {lat:55.585901, lng:-105.750596},
+                }]
+            }
+        }
     }
 </script>
