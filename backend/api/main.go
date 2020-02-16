@@ -59,7 +59,7 @@ func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 
 		if !elasticsearch.ExistsByID(s, "markers", "markers") {
 			client, ctx := s.Elastic, s.Ctx
-			data := `{"markers":[["US","37.0902","-95.7129"],["Canada","55.585901","-105.750596"],["Australia","-25.274399","133.775131"]]}`
+			data := `{"markers":[["US","37.0902","-95.7129"],["Canada","55.585901","-105.750596"]]}`
 			_, err := client.Index().Index("markers").Id("markers").BodyJson(data).Do(ctx)
 			if err != nil {
 				s.Log.Error("error indexing markers document to markers ", err)
@@ -81,7 +81,17 @@ func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 		return
 	})
 	/*api.HandleFunc("/getData-{name}", func(w http.ResponseWriter, r *http.Request) {
-	name:= mux.Vars(r)
-	markerName:=name["name"]*/
+		if r.Method != "GET" {
+			s.Log.Error("/get-markers did not receive a get request")
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("bad request"))
+			return
+		}
+		name := mux.Vars(r)
+		markerName := name["name"]
+		client, ctx:= s.Elastic, s.Ctx
+		result, err := client.Search().Index(markerName).Do(ctx)
+		for(res)
+	})*/
 
 }

@@ -29,11 +29,7 @@ def on_connect(client, userdata, flags, rc):  # The callback for when the client
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
     marker.append(str(msg.payload).split("\\r\\n")[0].split("b'")[1].split(","))      #This will break up the string ("CAN,lat,long") into [name, latitude, longitude], and add it into marker
-    doc = {
-        'markers': marker
-    }
-
-    #es.update(index="markers", id="markers", body=doc)
+    es.update(index="markers", doc_type='_doc', id="markers", body={"doc": {"markers":marker}})
     print("Message received-> " + msg.topic + " " + str(msg.payload) + " " + str(marker[0]))  # Print a received msg to cehck
 
 
@@ -52,6 +48,7 @@ doc = {
 es.index(index="markers", id="markers", body=doc)
 # Create 2 clients, one for markers and one for sensor data
 client = mqtt.Client(solace_clientid)  # Create instance of marker client
+
 
 print("Main has begun")
 client.username_pw_set(solace_user, password=solace_passwd)  # set username and password
