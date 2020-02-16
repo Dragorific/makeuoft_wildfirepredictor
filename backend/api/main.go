@@ -17,7 +17,9 @@ type Data struct {
 	Doc struct {
 		Sensors []string `json:"sensor"`    //Sensors holds the sensor data
 		Time    string   `json:"timestamp"` //Time holds the time stamp used for sorting
+		Predict string   `json:"prediction"`
 	} `json:"doc"` //Doc holds the entire document
+
 }
 
 //ParsedData stores the sorted data for the frontend
@@ -25,7 +27,7 @@ type ParsedData struct {
 	Temp     [30]float64 `json:"temp"`     //Temp holds the parsed tempreture data list
 	Humidity [30]float64 `json:"humidity"` //Humidity holds the parsed humidity data list
 	Light    [30]float64 `json:"light"`    //Light holds the parsed light data list
-	Predict  [30]float64 `json:"predict"`  //Predict holds the parsed predict
+	Predict  [30]float64 `json:"prediction"`
 }
 
 func main() {
@@ -117,21 +119,21 @@ func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 			return
 		}
 		var arr [30][]string
+		var predict [30]float64
 		for i, data := range result.Hits.Hits {
 			var newData Data
 			err = json.Unmarshal(data.Source, &newData)
 			arr[i] = newData.Doc.Sensors
+			predict[i], _ = strconv.ParseFloat(newData.Doc.Predict, 32)
 		}
 		var temp [30]float64
 		var hum [30]float64
 		var light [30]float64
-		var predict [30]float64
 
 		for i, data := range arr {
 			hum[i], _ = strconv.ParseFloat(data[0], 32)
 			temp[i], _ = strconv.ParseFloat(data[1], 32)
 			light[i], _ = strconv.ParseFloat(data[2], 32)
-			predict[i], _ = strconv.ParseFloat(data[3], 32)
 		}
 		parsed := &ParsedData{Temp: temp, Humidity: hum, Light: light, Predict: predict}
 		encjson, _ := json.Marshal(parsed)
