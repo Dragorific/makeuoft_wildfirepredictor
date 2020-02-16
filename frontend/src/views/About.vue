@@ -32,11 +32,11 @@
             </div>
             <div class="card-content">
               <div class="media">
-                <div class="media-left">
+                <!--div class="media-left">
                   <figure class="image is-48x48">
                     <img src="../assets/images/Faiq.jpg" alt="Placeholder image">
                   </figure>
-                </div>
+                </div-->
                 <div class="media-content">
                   <p class="title is-4">Faiq Ahmed</p>
                   <p class="subtitle is-6">@johnsmith</p>
@@ -61,11 +61,11 @@
             </div>
             <div class="card-content">
               <div class="media">
-                <div class="media-left">
+                <!--div class="media-left">
                   <figure class="image is-48x48">
                     <img src="../assets/images/Umar.jpg" alt="Placeholder image">
                   </figure>
-                </div>
+                </div-->
                 <div class="media-content">
                   <p class="title is-4">Umar Khan</p>
                   <p class="subtitle is-6">@johnsmith</p>
@@ -91,11 +91,11 @@
             </div>
             <div class="card-content">
               <div class="media">
-                <div class="media-left">
+                <!--div class="media-left">
                   <figure class="image is-48x48">
                     <img src="../assets/images/Skylar.png" alt="Placeholder image">
                   </figure>
-                </div>
+                </div-->
                 <div class="media-content">
                   <p class="title is-4">Skylar Liang</p>
                   <p class="subtitle is-6">@johnsmith</p>
@@ -120,11 +120,11 @@
             </div>
             <div class="card-content">
               <div class="media">
-                <div class="media-left">
+                <!--div class="media-left">
                   <figure class="image is-48x48">
                     <img src="../assets/images/Veerash.jpg" alt="Placeholder image">
                   </figure>
-                </div>
+                </div-->
                 <div class="media-content">
                   <p class="title is-4">Veerash Palanichamy</p>
                   <p class="subtitle is-6">@johnsmith</p>
