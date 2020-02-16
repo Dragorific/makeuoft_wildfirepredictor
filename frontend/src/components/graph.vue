@@ -76,19 +76,19 @@
                 return {lat: parseFloat(this.Markers[i][1]), lng: parseFloat(this.Markers[i][2])}
             },
             updateCharts(){
-                // fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-{name}")
-                // .then(response => {
-                //     return response.json();
-                // })
-                // .then(json => {
-                //     this.Temp = json.Temp
-                //     this.Humidity = json.Humidity 
-                //     this.Light = json.Light 
-                //     console.log(json.markers); // eslint-disable-line no-console
-                // })
-                // .catch(err => {
-                //     console.log(err); // eslint-disable-line no-console
-                // });
+                fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-can")
+                .then(response => {
+                    return response.json();
+                })
+                .then(json => {
+                    this.Temp = json.Temp
+                    this.Humidity = json.Humidity 
+                    this.Light = json.Light 
+                    console.log(json.markers); // eslint-disable-line no-console
+                })
+                .catch(err => {
+                    console.log(err); // eslint-disable-line no-console
+                });
 
                 this.fillData()
             },
