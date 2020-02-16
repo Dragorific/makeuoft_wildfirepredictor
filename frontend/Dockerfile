@@ -10,7 +10,6 @@ ENV PATH /frontend/node_modules/.bin:$PATH
 # install and cache web dependencies
 COPY package.json /frontend/package.json
 RUN npm install
-RUN npm install -g vue-cli
 RUN npm config set unsafe-perm true
 
 # start web
