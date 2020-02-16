@@ -1,15 +1,31 @@
 package main
 
 import (
+	"encoding/json"
 	"net/http"
+	"strconv"
 	"time"
 
-	"github.com/dragorific/makeuoft_wildfirepredictor/libraries/apilib"
 	"github.com/dragorific/makeuoft_wildfirepredictor/libraries/elasticsearch"
 	"github.com/dragorific/makeuoft_wildfirepredictor/setup"
 	"github.com/gorilla/mux"
 	"github.com/olivere/elastic"
 )
+
+//Data stores sensor data and timestamps
+type Data struct {
+	Doc struct {
+		Sensors []string `json:"sensor"`    //Sensors holds the sensor data
+		Time    string   `json:"timestamp"` //Time holds the time stamp used for sorting
+	} `json:"doc"` //Doc holds the entire document
+}
+
+//ParsedData stores the sorted data for the frontend
+type ParsedData struct {
+	Temp     [30]float64 `json:"temp"`     //Temp holds the parsed tempreture data list
+	Humidity [30]float64 `json:"humidity"` //Humidity holds the parsed humidity data list
+	Light    [30]float64 `json:"light"`    //Light holds the parsed light data list
+}
 
 func main() {
 	//gets state file
@@ -92,20 +108,33 @@ func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 		name := mux.Vars(r)
 		markerName := name["name"]
 		client, ctx := s.Elastic, s.Ctx
-		result, err := client.Search().Index(markerName).SortBy(elastic.NewFieldSort("timestamp").Asc()).From(0).Size(30).Do(ctx)
+		termQuery := elastic.NewMatchAllQuery()
+		result, err := client.Search().Index(markerName).Query(termQuery).From(0).Size(30).Do(ctx)
 		if err != nil {
 			s.Log.Error("Unable to get data from getData index", err)
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte("bad request"))
 			return
 		}
-		var arr [30][]byte
+		var arr [30][]string
 		for i, data := range result.Hits.Hits {
-			arr[i] = data.Source
+			var newData Data
+			err = json.Unmarshal(data.Source, &newData)
+			arr[i] = newData.Doc.Sensors
 		}
-		returnedData := apilib.ParseSensorData(arr)
+		var temp [30]float64
+		var hum [30]float64
+		var light [30]float64
+		for i, data := range arr {
+			hum[i], _ = strconv.ParseFloat(data[0], 32)
+			temp[i], _ = strconv.ParseFloat(data[1], 32)
+			light[i], _ = strconv.ParseFloat(data[2], 32)
+		}
+		parsed := &ParsedData{Temp: temp, Humidity: hum, Light: light}
+		encjson, _ := json.Marshal(parsed)
+		s.Log.Info("arr: ", arr)
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(returnedData))
+		w.Write([]byte(encjson))
 		return
 	})
 

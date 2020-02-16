@@ -37,8 +37,6 @@ services:
     restart: unless-stopped
     security_opt:
       - apparmor:unconfined
-    volumes:
-      - ./config.toml:/config.toml
   
   machine-learning:
     image: machine-learning
