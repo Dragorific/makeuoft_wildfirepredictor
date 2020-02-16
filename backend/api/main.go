@@ -25,6 +25,7 @@ type ParsedData struct {
 	Temp     [30]float64 `json:"temp"`     //Temp holds the parsed tempreture data list
 	Humidity [30]float64 `json:"humidity"` //Humidity holds the parsed humidity data list
 	Light    [30]float64 `json:"light"`    //Light holds the parsed light data list
+	Predict  [30]float64 `json:"predict"`  //Predict holds the parsed predict
 }
 
 func main() {
@@ -67,7 +68,6 @@ func main() {
 func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 
 	api.HandleFunc("/get-markers", func(w http.ResponseWriter, r *http.Request) {
-		s.Log.Info("new request on /get-markers")
 		if r.Method != "GET" {
 			s.Log.Error("/get-markers did not receive a get request")
 			w.WriteHeader(http.StatusBadRequest)
@@ -109,7 +109,7 @@ func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 		markerName := name["name"]
 		client, ctx := s.Elastic, s.Ctx
 		termQuery := elastic.NewMatchAllQuery()
-		result, err := client.Search().Index(markerName).Query(termQuery).From(0).Size(30).Do(ctx)
+		result, err := client.Search().Index(markerName).Query(termQuery).Sort("timestamp", true).From(0).Size(30).Do(ctx)
 		if err != nil {
 			s.Log.Error("Unable to get data from getData index", err)
 			w.WriteHeader(http.StatusBadRequest)
@@ -125,14 +125,16 @@ func setUpRoutes(s *setup.State, router *mux.Router, api *mux.Router) {
 		var temp [30]float64
 		var hum [30]float64
 		var light [30]float64
+		var predict [30]float64
+
 		for i, data := range arr {
 			hum[i], _ = strconv.ParseFloat(data[0], 32)
 			temp[i], _ = strconv.ParseFloat(data[1], 32)
 			light[i], _ = strconv.ParseFloat(data[2], 32)
+			predict[i], _ = strconv.ParseFloat(data[3], 32)
 		}
-		parsed := &ParsedData{Temp: temp, Humidity: hum, Light: light}
+		parsed := &ParsedData{Temp: temp, Humidity: hum, Light: light, Predict: predict}
 		encjson, _ := json.Marshal(parsed)
-		s.Log.Info("arr: ", arr)
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte(encjson))
 		return
