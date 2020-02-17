@@ -9,7 +9,7 @@
         <GmapMarker 
             :key="index"
             v-for="(m,index) in Markers"
-            v-on:click="Names=m[0];updateCharts"
+            v-on:click="Name=m[0];updateCharts"
             :position = getMarker(index)
             :clickable="true"
             :draggable="true"
@@ -77,7 +77,7 @@
                 return {lat: parseFloat(this.Markers[i][1]), lng: parseFloat(this.Markers[i][2])}
             },
             updateCharts(){
-                fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-"+this.Names)
+                fetch(process.env.VUE_APP_ENDPOINT + "/api/getData-"+this.Name)
                 .then(response => {
                     return response.json();
                 })
